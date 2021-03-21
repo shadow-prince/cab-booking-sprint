@@ -11,10 +11,7 @@ public class Admin extends AbstractUser {
 		this.adminId = adminId;
 	}
 
-	public Admin(int adminId) {
-		super();
-		this.adminId = adminId;
-	}
+	
 	
 	
 }
