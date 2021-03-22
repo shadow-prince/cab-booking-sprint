@@ -11,3 +11,7 @@ public interface ITripBookingRepository {
 	public List<TripBooking> viewAllTripsCustomer(int customerId);
 	public TripBooking calculateBill(int customerId);
 }
+
+
+
+

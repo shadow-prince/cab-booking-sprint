@@ -3,6 +3,8 @@ package com.cg.mts.repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.cg.mts.entities.Admin;
 import com.cg.mts.entities.TripBooking;
 import com.cg.mts.exception.AdminNotFoundException;
@@ -17,4 +19,5 @@ public interface IAdminRepository {
 	public List<TripBooking>getTripsCustomerwise();
 	public List<TripBooking>getTripsDatewise();
 	public List<TripBooking>getAllTripsForDays(int customerId, LocalDateTime fromDate, LocalDateTime toDate) throws CustomerNotFoundException;
+	public List<Admin> viewAllAdmin();
 }
