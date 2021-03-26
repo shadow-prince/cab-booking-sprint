@@ -19,8 +19,10 @@ import com.cg.mts.entities.Customer;
 import com.cg.mts.entities.TripBooking;
 import com.cg.mts.exception.AdminNotFoundException;
 import com.cg.mts.exception.CustomerNotFoundException;
+import com.cg.mts.exception.InvalidUserOrPasswordException;
 import com.cg.mts.service.IAdminService;
 import com.cg.mts.service.ICustomerService;
+import com.cg.mts.util.LoginService;
 
 @RestController
 @RequestMapping("/admin")
@@ -33,8 +35,22 @@ public class AdminController {
 	IAdminService ias;
 	
 	@Autowired
+	LoginService ls;
+	
+	@Autowired
 	ICustomerService cusService;
 	 
+	@PostMapping("/login")
+	public String validateAdmin(@RequestBody Admin admin)throws InvalidUserOrPasswordException {
+		String response;
+		try {
+			response = ls.validateCredentials(admin);
+		}
+		catch(Exception e) {
+			throw new InvalidUserOrPasswordException("Invalid Username/Password");
+		}
+		return response;
+	}
 	
 	@GetMapping
 	public List<Admin> viewALlAdmin(){

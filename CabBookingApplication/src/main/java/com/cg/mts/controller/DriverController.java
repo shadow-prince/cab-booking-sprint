@@ -3,7 +3,6 @@ package com.cg.mts.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,10 +11,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.cg.mts.entities.Driver;
 import com.cg.mts.exception.DriverNotFoundException;
+import com.cg.mts.exception.InvalidUserOrPasswordException;
 import com.cg.mts.service.IDriverService;
+import com.cg.mts.util.LoginService;
 
 @RestController
 @RequestMapping("/driver")
@@ -23,6 +23,21 @@ public class DriverController {
 
 	@Autowired
 	IDriverService ids;
+	
+	@Autowired
+	LoginService ls;
+	
+	@PostMapping("/login")
+	public String validateDriver(@RequestBody Driver driver) throws InvalidUserOrPasswordException {
+		String response;
+		try {
+			response = ls.validateCredentials(driver);
+		}
+		catch(Exception e) {
+			throw new InvalidUserOrPasswordException("Invalid Username/Password");
+		}
+		return response;
+	}
 	
 	@GetMapping
 	public List<Driver> displayAllDrivers(){

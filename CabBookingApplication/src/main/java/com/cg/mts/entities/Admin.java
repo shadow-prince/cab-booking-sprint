@@ -13,9 +13,11 @@ public class Admin extends AbstractUser {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int adminId;
 
-	public Admin() {
-		
-	}
+	
+	  public Admin() {
+	  
+	  }
+	 
 	
 	public int getAdminId() {
 		return adminId;
