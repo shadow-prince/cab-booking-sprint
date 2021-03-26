@@ -25,6 +25,9 @@ import com.cg.mts.service.ICustomerService;
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
+	/**
+	 * @author Kavya P
+	 */
 
 	@Autowired
 	IAdminService ias;
@@ -37,11 +40,23 @@ public class AdminController {
 	public List<Admin> viewALlAdmin(){
 		return ias.viewALlAdmin();
 	}
+	/**
+	 * 
+	 * @param admin
+	 * 
+	 */
+	
 	
 	@PostMapping
 	public Admin insertAdmin(@RequestBody Admin admin) {
 		return ias.insertAdmin(admin);
 	}
+	/**
+	 * 
+	 * @param adminId
+	 * @return
+	 * @throws AdminNotFoundException
+	 */
 	
 	@DeleteMapping("/{adminId}")
 	public List<Admin> deleteAdmin(@PathVariable int adminId) throws AdminNotFoundException {
@@ -55,6 +70,13 @@ public class AdminController {
 		return s;
 		
 	}
+	/**
+	 * 
+	 * @param admin
+	 * @return
+	 * @throws AdminNotFoundException
+	 */
+	
 	
 	@PutMapping
 	public Admin updateAdmin(@RequestBody Admin admin) throws AdminNotFoundException {
@@ -68,6 +90,13 @@ public class AdminController {
 		}
 		return a;
 	}
+	
+	/**
+	 * 
+	 * @param adminId
+	 * @return
+	 * @throws AdminNotFoundException
+	 */
 	@GetMapping("/{adminId}")
 	public Admin GetAdminById(@PathVariable int adminId) throws AdminNotFoundException {
 		Admin a = null;
@@ -80,7 +109,16 @@ public class AdminController {
 		}
 		return a;
 	}
+	/**
+	 * 
+	 * @param customerId
+	 * @return
+	 * @throws CustomerNotFoundException
+	 */
 	
+	
+	
+	 
 	@GetMapping("/alltrips/{customerId}")
 	public List<TripBooking> getAllTrips(@PathVariable int customerId) throws CustomerNotFoundException {
 		
@@ -94,11 +132,13 @@ public class AdminController {
 		}
 		return t;
 	}
+	
 
 	@GetMapping("/cabwise")
 	public List<TripBooking> getTripsCabwise() {
 		return ias.getTripsCabwise();
 	}
+	
 
 	@GetMapping("/customerwise")
 	public List<TripBooking> getTripsCustomerwise() {
