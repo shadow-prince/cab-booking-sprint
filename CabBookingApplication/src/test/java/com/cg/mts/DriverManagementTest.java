@@ -30,7 +30,10 @@ public class DriverManagementTest extends AbstractTest {
 	public void setUp() {
 		super.setUp();
 	}	
-	
+	/**
+	 * displayAllDriversTest
+	 * @throws Exception
+	 */
 	@Test
 	public void displayAllDriversTest() throws Exception {
 		String uri = "/driver";
@@ -57,7 +60,10 @@ public class DriverManagementTest extends AbstractTest {
 		
 	}
 	
-
+    /**
+     * displayAllDriversTest2
+     * @throws Exception
+     */
 	@Test
 	public void displayAllDriversTest2() throws Exception {
 		String uri = "/driver";
@@ -65,8 +71,10 @@ public class DriverManagementTest extends AbstractTest {
 		int status = mvcResult.getResponse().getStatus();
 		assertEquals(200, status);
 	}
-	
-	
+	/**
+	 * viewDriverByIdTestCase
+	 * @throws Exception
+	 */
 	@Test
 	public void viewDriverByIdTestCase() throws Exception {
 		String uri = "/driver/9";
@@ -98,7 +106,10 @@ public class DriverManagementTest extends AbstractTest {
 		}
 	}
 	
-
+    /**
+     * insertDriverTestCase
+     * @throws Exception
+     */
 	@Test
 	public void insertDriverTestCase() throws Exception {
 
@@ -118,7 +129,10 @@ public class DriverManagementTest extends AbstractTest {
 		assertEquals("hello", driver[driver.length-1].getUsername());
 
 	}
-
+    /**
+     * updateDriver
+     * @throws Exception
+     */
 	@Test
 	public void updateDriver() throws Exception {
 		String uri = "/driver/6";
@@ -140,7 +154,10 @@ public class DriverManagementTest extends AbstractTest {
 		assertEquals("updatedEmail.com", d.getEmail());
 
 	}
-
+    /**
+     * deleteDriver
+     * @throws Exception
+     */
 	@Test
 	public void deleteDriver() throws Exception {
 		this.mvc.perform(MockMvcRequestBuilders.delete("/driver/49").contentType(MediaType.APPLICATION_JSON)

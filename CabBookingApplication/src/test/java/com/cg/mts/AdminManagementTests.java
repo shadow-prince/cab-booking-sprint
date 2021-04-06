@@ -28,7 +28,10 @@ public class AdminManagementTests extends AbstractTest {
 	public void setUp() {
 		super.setUp();
 	}
-
+    /**
+     * viewAllAdmin
+     * @throws Exception
+     */
 	@Test
 	public void viewAllAdmin() throws Exception {
 		String uri = "/admin";
@@ -39,7 +42,10 @@ public class AdminManagementTests extends AbstractTest {
 		Admin admin[] = super.mapFromJson(content, Admin[].class);
 		assertEquals(66, admin[0].getAdminId());
 	}
-
+    /**
+     * createAdmin
+     * @throws Exception
+     */
 	@Test
 	public void createAdmin() throws Exception {
 		String uri = "/admin";
@@ -61,7 +67,10 @@ public class AdminManagementTests extends AbstractTest {
 		assertEquals("creator@cab.in", a.getEmail());
 
 	}
-
+    /**
+     * updateAdmin
+     * @throws Exception
+     */
 	@Test
 	public void updateAdmin() throws Exception {
 		String uri = "/admin/71";
@@ -83,14 +92,20 @@ public class AdminManagementTests extends AbstractTest {
 		assertEquals("updatedEmail.com", a.getEmail());
 
 	}
-
+    /**
+     * deleteAdmin  
+     * @throws Exception
+     */
 	@Test
 	public void deleteAdmin() throws Exception {
 
 		this.mvc.perform(MockMvcRequestBuilders.delete("/admin/89").contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 	}
-
+    /**
+     * getAdminById
+     * @throws Exception
+     */
 	@Test
 	public void getAdminById() throws Exception {
 		String uri = "/admin/66";
@@ -101,7 +116,10 @@ public class AdminManagementTests extends AbstractTest {
 		Admin admin = super.mapFromJson(content, Admin.class);
 		assertEquals("createadmin", admin.getUsername());
 	}
-
+    /**
+     * showAllTrips
+     * @throws Exception
+     */
 	@Test
 	public void showAllTrips() throws Exception {
 		String uri = "/admin/alltrips/62";
@@ -113,7 +131,10 @@ public class AdminManagementTests extends AbstractTest {
 		assertEquals(62, tripList[0].getCustomer().getCustomerId());
 
 	}
-
+    /**
+     * showTripsCabWise
+     * @throws Exception
+     */
 	@Test
 	public void showTripsCabWise() throws Exception {
 		String uri = "/admin/cabwise";
@@ -124,7 +145,10 @@ public class AdminManagementTests extends AbstractTest {
 		TripBooking tripList[] = super.mapFromJson(content, TripBooking[].class);
 		assertTrue(tripList[0].getDriver().getDriverId() <= tripList[1].getDriver().getDriverId());
 	}
-
+    /**
+     * showTripsCustomerWise
+     * @throws Exception
+     */
 	@Test
 	public void showTripsCustomerWise() throws Exception {
 		String uri = "/admin/customerwise";
@@ -135,7 +159,10 @@ public class AdminManagementTests extends AbstractTest {
 		TripBooking tripList[] = super.mapFromJson(content, TripBooking[].class);
 		assertTrue(tripList[0].getCustomer().getCustomerId() <= tripList[1].getCustomer().getCustomerId());
 	}
-
+    /**
+     * showTripsDateWise
+     * @throws Exception
+     */
 	@Test
 	public void showTripsDateWise() throws Exception {
 		boolean compare = false;
@@ -152,7 +179,10 @@ public class AdminManagementTests extends AbstractTest {
 		}
 		assertEquals(true, compare);
 	}
-
+    /**
+     * showTripsForDates
+     * @throws Exception
+     */
 	@Test
 	public void showTripsForDates() throws Exception {
 		String uri = "/admin/fordays/62/2021-03-04T04:50:26.838Z/2021-04-04T04:50:26.838Z";
