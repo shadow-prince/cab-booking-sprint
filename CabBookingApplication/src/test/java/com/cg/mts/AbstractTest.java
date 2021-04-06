@@ -12,15 +12,19 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @WebAppConfiguration
 public abstract class AbstractTest {
 	protected MockMvc mvc;
 	@Autowired
 	WebApplicationContext webApplicationContext;
+	@Autowired
+	private ObjectMapper objectMapper;
 
 	protected void setUp() {
 		mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+		objectMapper.registerModule(new JavaTimeModule());
 	}
 
 	protected String mapToJson(Object obj) throws JsonProcessingException {

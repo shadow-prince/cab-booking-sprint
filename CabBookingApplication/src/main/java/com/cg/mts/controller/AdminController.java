@@ -67,13 +67,14 @@ public class AdminController {
 	public Admin insertAdmin(@RequestBody Admin admin) {
 		return ias.insertAdmin(admin);
 	}
+	
+	
 	/**
 	 * 
 	 * @param adminId
 	 * @return
 	 * @throws AdminNotFoundException
 	 */
-	
 	@DeleteMapping("/{adminId}")
 	public List<Admin> deleteAdmin(@PathVariable int adminId) throws AdminNotFoundException {
 		List<Admin> s = null;
@@ -86,14 +87,15 @@ public class AdminController {
 		return s;
 		
 	}
+	
+	
+	
 	/**
 	 * 
 	 * @param admin
 	 * @return
 	 * @throws AdminNotFoundException
 	 */
-	
-	
 	@PutMapping
 	public Admin updateAdmin(@RequestBody Admin admin) throws AdminNotFoundException {
 		Admin a = null;
@@ -106,6 +108,8 @@ public class AdminController {
 		}
 		return a;
 	}
+	
+	
 	
 	/**
 	 * 
@@ -125,16 +129,15 @@ public class AdminController {
 		}
 		return a;
 	}
+	
+	
+	
 	/**
 	 * 
 	 * @param customerId
 	 * @return
 	 * @throws CustomerNotFoundException
 	 */
-	
-	
-	
-	 
 	@GetMapping("/alltrips/{customerId}")
 	public List<TripBooking> getAllTrips(@PathVariable int customerId) throws CustomerNotFoundException {
 		
@@ -155,17 +158,35 @@ public class AdminController {
 		return ias.getTripsCabwise();
 	}
 	
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	@GetMapping("/customerwise")
 	public List<TripBooking> getTripsCustomerwise() {
 		return ias.getTripsCustomerwise();
 	}
-
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
 	@GetMapping("/datewise")
 	public List<TripBooking> getTripsDatewise() {
 		return ias.getTripsDatewise();
 	}
-
+	
+	
+	/**
+	 * 
+	 * @param customerId
+	 * @param fromDate
+	 * @param toDate
+	 * @return
+	 * @throws CustomerNotFoundException
+	 */
 	@GetMapping("fordays/{customerId}/{fromDate}/{toDate}")
 	public List<TripBooking> getAllTripsForDays(@PathVariable("customerId") int customerId, @PathVariable("fromDate")  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fromDate,@PathVariable("toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime toDate) throws CustomerNotFoundException {
 		return ias.getAllTripsForDays(customerId, fromDate, toDate);

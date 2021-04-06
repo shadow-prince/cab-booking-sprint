@@ -20,6 +20,12 @@ import com.cg.mts.exception.CustomerNotFoundException;
 
 @Repository
 @Transactional
+
+/**
+ * 
+ * @author Kavya P
+ *
+ */
 public class IAdminDaoImpl implements IAdminDao{
 
 	@PersistenceContext
@@ -41,6 +47,7 @@ public class IAdminDaoImpl implements IAdminDao{
 		return trips;
 	}
 
+	
 	@Override
 	public List<TripBooking> getTripsCustomerwise() {
 		TypedQuery<TripBooking> q = em.createQuery("select tb from TripBooking tb",TripBooking.class);
@@ -57,6 +64,10 @@ public class IAdminDaoImpl implements IAdminDao{
 		return trips;
 	}
 
+	
+	/**
+	 * @param
+	 */
 	@Override
 	public List<TripBooking> getAllTripsForDays(int customerId, LocalDateTime fromDate, LocalDateTime toDate)
 			throws CustomerNotFoundException {
